@@ -1,0 +1,70 @@
+
+
+ion-title{
+  text-align: center;
+}
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+ion-button {
+  --background: #4b7462;
+  --background-hover: #9ce0be;
+  --background-activated: #88f4be;
+  --background-focused: #88f4be;
+
+  --color: rgb(252, 252, 252);
+}
+
+.mensagem{
+  --color: rgb(209, 14, 14);
+}
+
+.logotela-image{
+  width: 350px;
+  height: 350px;
+  
+}
+
+
+.texto_agendamento {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color: #be2626;
+  line-height: 1.5;
+}
+
+.cylindrical-button {
+  width: 160px;
+  height: 50px; 
+  --border-radius: 25px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><b>Avaliação do Serviço</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Deixe sua Avaliação</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="enviarAvaliacao()">
+        <ion-item>
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input [(ngModel)]="avaliacao.nome" name="nome" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Qual barbeiro você deseja avaliar?</ion-label>
+          <ion-select [(ngModel)]="avaliacao.barbeiro" name="barbeiro" placeholder="Selecione" required>
+            <ion-select-option value="João">João</ion-select-option>
+            <ion-select-option value="Carlos">Carlos</ion-select-option>
+            <ion-select-option value="Marcos">Marcos</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <div class="rating-container">
+          <p>Avaliação:</p>
+          <div class="stars">
+            <ion-icon
+              *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+              name="{{ i < avaliacao.nota ? 'star' : 'star-outline' }}"
+              (click)="definirNota(i + 1)"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Comentário</ion-label>
+          <ion-textarea [(ngModel)]="avaliacao.comentario" name="comentario"></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="full" type="submit">Enviar Avaliação</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

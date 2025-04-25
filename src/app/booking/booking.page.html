@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <h1>AGENDAMENTO</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label><b>Serviço</b></ion-label>
+    <ion-select [(ngModel)]="service" (ionChange)="onServiceChange()">
+      <ion-select-option *ngFor="let service of services" [value]="service">
+        {{ service.name }} (R$ {{ service.price }} - {{ service.duration }} min)
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><b>Barbeiro</b></ion-label>
+    <ion-select [(ngModel)]="barber" (ionChange)="onServiceChange()">
+      <ion-select-option *ngFor="let barber of barbers" [value]="barber">
+        {{ barber }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><b>Data</b></ion-label>
+    <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="date" (ionChange)="onServiceChange()"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><b>Horário</b></ion-label>
+    <ion-select [(ngModel)]="time" (ionChange)="validateTime()">
+      <ion-select-option *ngFor="let availableTime of availableTimes" [value]="availableTime">
+        {{ availableTime }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><b>Promoções</b></ion-label>
+    <ion-select [(ngModel)]="selectedPromotion">
+      <ion-select-option *ngFor="let promo of promotions" [value]="promo">
+        {{ promo.name }} ({{ promo.discount }}% off)
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button expand="block" (click)="confirmAppointment()">Confirmar Agendamento</ion-button>
+</ion-content>
