@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { ServicosPage } from './home.page';
+import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
-
+import { ServicosPageRoutingModule } from './servicos-routing.module';
+import { ServicosPage } from './servicos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    ServicosPageRoutingModule
   ],
   declarations: [ServicosPage]
 })
-export class HomePageModule {}
+export class ServicosPageModule {}

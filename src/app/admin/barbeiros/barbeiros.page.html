@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Barbeiros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<ion-item>
+  <ion-input
+    type="text"
+    inputmode="text"
+    [(ngModel)]="novoBarbeiro"
+    name="novoBarbeiro"
+    placeholder="Nome do Barbeiro">
+  </ion-input>
+  <ion-button (click)="adicionar()">Adicionar</ion-button>
+</ion-item>
+
+
+
+  <ion-button expand="block" (click)="adicionar()">Adicionar Barbeiro</ion-button>
+  <ion-button expand="block" color="success" (click)="salvar()">Salvar</ion-button>
+</ion-content>

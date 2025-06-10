@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Produtos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item *ngFor="let p of produtos; let i = index">
+    <ion-input [(ngModel)]="produtos[i].nome" placeholder="Nome"></ion-input>
+    <ion-input [(ngModel)]="produtos[i].quantidade" type="number" placeholder="Qtd"></ion-input>
+    <ion-input [(ngModel)]="produtos[i].preco" type="number" placeholder="Preço R$"></ion-input>
+    <ion-button fill="clear" color="danger" (click)="remover(i)">Remover</ion-button>
+  </ion-item>
+
+  <ion-button expand="block" (click)="adicionar()">Adicionar Produto</ion-button>
+  <ion-button expand="block" color="success" (click)="salvar()">Salvar</ion-button>
+</ion-content>

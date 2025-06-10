@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login', // ou 'inicio'
     pathMatch: 'full'
   },
   {
@@ -12,21 +12,31 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'booking',
-    loadChildren: () => import('./booking/booking.module').then(m => m.BookingPageModule)
+    path: 'agendamento',
+    loadChildren: () => import('./agendamento/agendamento.module').then(m => m.AgendamentoPageModule)
   },
   {
-    path: 'faq',
-    loadChildren: () => import('./faq/faq.module').then( m => m.FaqPageModule)
+    path: 'produtos',
+    loadChildren: () => import('./produtos/produtos.module').then(m => m.ProdutosPageModule)
   },
   {
-    path: 'avaliacao',
-    loadChildren: () => import('./avaliacao/avaliacao.module').then( m => m.AvaliacaoPageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'registro-clientes',
-    loadChildren: () => import('./registro-clientes/registro-clientes.module').then( m => m.RegistroClientesPageModule)
+    path: 'cadastro',
+    loadChildren: () => import('./cadastro/cadastro.module').then(m => m.CadastroPageModule)
+},
+  {
+    path: 'cliente',
+    loadChildren: () => import('./cliente/cliente.module').then(m => m.ClientePageModule)
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule)
+  }
+
+
 ];
 
 @NgModule({

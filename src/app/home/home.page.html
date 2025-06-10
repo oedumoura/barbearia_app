@@ -1,38 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <h1><b>AGENDAMENTO BARBER CLUB</b></h1>
-    </ion-title>
+<ion-header translucent="true">
+  <ion-toolbar color="dark">
+    <ion-title>Barber Club</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list *ngIf="appointments.length > 0">
-    <ion-item *ngFor="let appointment of appointments; let i = index">
-      <ion-label>
-        <h2>Serviço: {{ appointment.service.name }}</h2>
-        <p>Barbeiro: {{ appointment.barber }}</p>
-        <p>Data: {{ appointment.date | date: 'dd/MM/yyyy' }}</p>
-        <p>Hora: {{ appointment.time }}</p>
-        <p>Duração: {{ appointment.service.duration }} minutos</p>
-      </ion-label>
-      <ion-button color="danger" (click)="deleteAppointment(i)">Excluir</ion-button>
+<ion-content class="home-content" [fullscreen]="true">
+  <h2 *ngIf="nomeUsuario">Olá, {{ nomeUsuario }}!</h2>
+  <div class="greeting">
+    <h2>Olá, seja bem-vindo!</h2>
+  </div>
+
+  <ion-card class="main-banner">
+    <img src="assets/barbearia.jpg" alt="Banner Barbearia">
+  </ion-card>
+
+  <div class="section-title">
+    <h3>Serviços Disponíveis</h3>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Corte Masculino</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Barba</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Corte + Barba</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-text *ngIf="appointments.length === 0">
-    <p class="texto_agendamento">Não há agendamentos ainda. Clique em "Agendar" para começar!</p>
-  </ion-text>
+  <ion-button expand="block" color="primary" routerLink="/agendamento">
+    Agendar Serviço
+  </ion-button>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/booking" class="cylindrical-button">
-      <ion-icon name="add"></ion-icon>
-      AGENDAR
-    </ion-fab-button>
-  </ion-fab>
+  <ion-button expand="block" color="secondary" routerLink="/produtos">
+    Ver Produtos
+  </ion-button>
+  <ion-button expand="block" color="tertiary" routerLink="/cliente" *ngIf="nomeUsuario">
+    Meus Agendamentos
+  </ion-button>
+
 </ion-content>
-<ion-button [routerLink]="'/registro-clientes'" expand="block">CRIE SUA CONTA</ion-button>
-<ion-button [routerLink]="'/avaliacao'" expand="block">Avaliar Serviço</ion-button>
-<ion-button [routerLink]="'/faq'">Dúvidas sobre serviços </ion-button>
-<ion-button onclick="window.open('https://w.app/appbarber', '_blank')">
-  <h1>Whatsapp da loja</h1>
