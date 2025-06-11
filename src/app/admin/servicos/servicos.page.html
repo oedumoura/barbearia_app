@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Serviços</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Lista de serviços -->
+  <ion-list>
+    <ion-item *ngFor="let s of servicos; let i = index">
+      <ion-label class="ion-text-wrap">{{ s.nome }}</ion-label>
+      <ion-input type="number" [(ngModel)]="servicos[i].preco" placeholder="Preço R$"></ion-input>
+      <ion-button fill="clear" size="small" (click)="servicoSelecionadoIndex = i">Promoção</ion-button>
+      <ion-button fill="clear" color="danger" size="small" (click)="remover(i)">Remover</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Formulário de promoção -->
+  <ion-card *ngIf="servicoSelecionadoIndex !== null">
+    <ion-card-header>
+      <ion-card-title>Adicionar Promoção: {{ servicos[servicoSelecionadoIndex].nome }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Desconto (%)</ion-label>
+        <ion-input type="number" [(ngModel)]="desconto"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Início</ion-label>
+        <ion-datetime [(ngModel)]="inicio" presentation="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Fim</ion-label>
+        <ion-datetime [(ngModel)]="fim" presentation="date"></ion-datetime>
+      </ion-item>
+      <ion-button expand="block" (click)="salvarPromocao()">Salvar Promoção</ion-button>
+      <ion-button expand="block" fill="clear" color="medium" (click)="cancelarPromocao()">Cancelar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Adicionar novo serviço -->
+  <ion-item>
+    <ion-input [(ngModel)]="novoServicoNome" placeholder="Novo Serviço"></ion-input>
+    <ion-input type="number" [(ngModel)]="novoServicoPreco" placeholder="Preço R$"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="adicionar()">Adicionar Serviço</ion-button>
+
+  <!-- Salvar todos os serviços -->
+  <ion-button expand="block" color="success" (click)="salvar()">Salvar Todos</ion-button>
+
+</ion-content>

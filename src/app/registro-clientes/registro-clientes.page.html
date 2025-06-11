@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><b>Criar Conta</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Preencha seus Dados </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="registrarCliente()">
+        <ion-item>
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input [(ngModel)]="cliente.nome" name="nome" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="cliente.email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Telefone</ion-label>
+          <ion-input type="tel" [(ngModel)]="cliente.telefone" name="telefone" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="cliente.senha" name="senha" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="full" type="submit">Registrar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

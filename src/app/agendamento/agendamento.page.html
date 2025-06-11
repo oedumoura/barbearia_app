@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agendar Serviço</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Selecione a Data</ion-label>
+    <ion-datetime
+      [(ngModel)]="selectedDate"
+      presentation="date"
+      [min]="minDate"
+      [max]="maxDate"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Horário</ion-label>
+    <ion-select [(ngModel)]="selectedTime" placeholder="Selecione um horário">
+      <ion-select-option *ngFor="let h of horariosDisponiveis" [value]="h">
+        {{ h }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+  <ion-label position="stacked">Profissional</ion-label>
+  <ion-select [(ngModel)]="selectedBarber" placeholder="Selecione um profissional">
+    <ion-select-option *ngFor="let barbeiro of barbeiros" [value]="barbeiro.nome">
+      {{ barbeiro.nome }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+
+
+  <ion-item>
+    <ion-label position="stacked">Serviço</ion-label>
+    <ion-select [(ngModel)]="selectedService" placeholder="Escolha um serviço">
+      <ion-select-option *ngFor="let s of servicos" [value]="s">
+        {{ s.nome }} – 
+        <span *ngIf="s.emPromocao">Promo: {{ s.preco }}R$ (De {{ s.precoOriginal }}R$)</span>
+        <span *ngIf="!s.emPromocao">{{ s.preco }}R$</span>
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="confirmarAgendamento()">
+    Confirmar Agendamento
+  </ion-button>
+</ion-content>
