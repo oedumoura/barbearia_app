@@ -1,0 +1,35 @@
+<ion-header translucent="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Área do Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Olá, {{ nomeUsuario }}</h2>
+
+  <h3>Meus Agendamentos</h3>
+  <ion-list *ngIf="meusAgendamentos.length > 0">
+    <ion-item *ngFor="let a of meusAgendamentos">
+      <ion-label>
+        <p><strong>{{ a.data }} {{ a.hora }}</strong></p>
+        <p>{{ a.servico }} com {{ a.barbeiro }}</p>
+        <p>Valor: R$ {{ a.valor }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <p *ngIf="meusAgendamentos.length === 0">Nenhum agendamento encontrado.</p>
+
+  <h3>Produtos Reservados</h3>
+  <ion-list *ngIf="reservas.length > 0">
+    <ion-item *ngFor="let r of reservas">
+      <ion-label>
+        <h2>{{ r.nome }}</h2>
+        <p>Preço: R$ {{ r.preco }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <p *ngIf="reservas.length === 0">Nenhum produto reservado.</p>
+</ion-content>

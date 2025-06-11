@@ -1,0 +1,44 @@
+<ion-header translucent="true">
+  <ion-toolbar color="dark">
+    <ion-title>Barber Club</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-content" [fullscreen]="true">
+  <h2 *ngIf="nomeUsuario">Olá, {{ nomeUsuario }}!</h2>
+  <div class="greeting">
+    <h2>Olá, seja bem-vindo!</h2>
+  </div>
+
+  <ion-card class="main-banner">
+    <img src="assets/barbearia.jpg" alt="Banner Barbearia">
+  </ion-card>
+
+  <div class="section-title">
+    <h3>Serviços Disponíveis</h3>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Corte Masculino</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Barba</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Corte + Barba</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" routerLink="/agendamento">
+    Agendar Serviço
+  </ion-button>
+
+  <ion-button expand="block" color="secondary" routerLink="/produtos">
+    Ver Produtos
+  </ion-button>
+  <ion-button expand="block" color="tertiary" routerLink="/cliente" *ngIf="nomeUsuario">
+    Meus Agendamentos
+  </ion-button>
+
+</ion-content>

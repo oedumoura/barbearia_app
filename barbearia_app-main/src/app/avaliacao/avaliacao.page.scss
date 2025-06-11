@@ -1,0 +1,66 @@
+/* Container da avaliação */
+.rating-container {
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título opcional */
+.rating-container h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Estrelas */
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+ion-icon {
+  font-size: 34px;
+  color: gold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+ion-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Estilo geral da página para combinar com a imagem */
+body, ion-content {
+  background-color: #1e1e1e;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+input, ion-input {
+  background-color: #3a3a3a;
+  color: white;
+  border-radius: 8px;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+ion-button {
+  width: 100%;
+  --background: #000;
+  --color: white;
+  --border-radius: 10px;
+  margin-top: 16px;
+}

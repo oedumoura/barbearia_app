@@ -1,0 +1,25 @@
+<ion-header translucent="true">
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Produtos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let produto of produtos">
+      <ion-label>
+        <h2>{{ produto.nome }}</h2>
+        <p>Preço: R$ {{ produto.preco }} | Estoque: {{ produto.quantidade }}</p>
+      </ion-label>
+      <ion-button color="success" (click)="reservarProduto(produto)">
+        Reservar
+      </ion-button>
+      <ion-button color="primary" (click)="comprarProduto(produto)">
+        Comprar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
