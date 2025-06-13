@@ -8,20 +8,28 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      type="text"
+      inputmode="text"
+      [(ngModel)]="novoBarbeiro"
+      name="novoBarbeiro"
+      placeholder="Nome do Barbeiro">
+    </ion-input>
+    <ion-button (click)="adicionar()">Adicionar</ion-button>
+  </ion-item>
 
-<ion-item>
-  <ion-input
-    type="text"
-    inputmode="text"
-    [(ngModel)]="novoBarbeiro"
-    name="novoBarbeiro"
-    placeholder="Nome do Barbeiro">
-  </ion-input>
-  <ion-button (click)="adicionar()">Adicionar</ion-button>
-</ion-item>
+  <!-- ✅ Lista dos barbeiros -->
+  <ion-list *ngIf="profissionais.length > 0; else nenhum">
+    <ion-item *ngFor="let p of profissionais; let i = index">
+      <ion-label>{{ p }}</ion-label>
+      <ion-button fill="clear" color="danger" (click)="remover(i)">Remover</ion-button>
+    </ion-item>
+  </ion-list>
 
+  <ng-template #nenhum>
+    <ion-text color="medium">Nenhum barbeiro cadastrado ainda.</ion-text>
+  </ng-template>
 
-
-  <ion-button expand="block" (click)="adicionar()">Adicionar Barbeiro</ion-button>
   <ion-button expand="block" color="success" (click)="salvar()">Salvar</ion-button>
 </ion-content>

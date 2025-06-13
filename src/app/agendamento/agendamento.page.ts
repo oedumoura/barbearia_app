@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-agendamento',
@@ -19,16 +20,29 @@ export class AgendamentoPage implements OnInit {
   barbeiros: string[] = [];
   servicos: any[] = [];
 
+  dataMinima: string = '';
+  dataMaxima: string = '';
+
+  // ✅ Injetar o Router aqui
+  constructor(private router: Router) {}
+
   ngOnInit() {
+    const hoje = new Date();
+    const doisMesesDepois = new Date();
+    doisMesesDepois.setMonth(hoje.getMonth() + 2);
+
+    this.dataMinima = hoje.toISOString().split('T')[0];
+    this.dataMaxima = doisMesesDepois.toISOString().split('T')[0];
+
     this.barbeiros = JSON.parse(localStorage.getItem('profissionais') || '[]');
     const todosServicos = JSON.parse(localStorage.getItem('servicos') || '[]');
-    const hoje = new Date().toISOString();
+    const hojeISO = new Date().toISOString();
 
     this.servicos = todosServicos.map((s: any) => {
       if (
         s.promocao &&
-        hoje >= s.promocao.inicio &&
-        hoje <= s.promocao.fim
+        hojeISO >= s.promocao.inicio &&
+        hojeISO <= s.promocao.fim
       ) {
         const precoComDesconto = s.preco - (s.preco * (s.promocao.desconto / 100));
         return {
@@ -48,7 +62,7 @@ export class AgendamentoPage implements OnInit {
   confirmarAgendamento() {
     const cliente = localStorage.getItem('usuarioLogado') || 'Desconhecido';
     const novoAgendamento = {
-      data: this.selectedDate,
+      data: new Date(this.selectedDate).toISOString().split('T')[0],
       hora: this.selectedTime,
       barbeiro: this.selectedBarber,
       servico: this.selectedService?.nome,
@@ -71,6 +85,10 @@ export class AgendamentoPage implements OnInit {
 
     agendamentosSalvos.push(novoAgendamento);
     localStorage.setItem('agendamentos', JSON.stringify(agendamentosSalvos));
+
     alert('Agendamento confirmado com sucesso!');
+
+    
+    this.router.navigate(['/cliente/home']);
   }
 }

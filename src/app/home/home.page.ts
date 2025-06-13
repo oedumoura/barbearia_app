@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicosPage implements OnInit {
   nomeUsuario: string = '';
+  servicosDisponiveis: any[] = [];
 
   ngOnInit() {
     this.nomeUsuario = localStorage.getItem('usuarioLogado') || '';
+    const dados = localStorage.getItem('servicos');
+    this.servicosDisponiveis = dados ? JSON.parse(dados) : [];
   }
 
   services = [

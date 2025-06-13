@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-servicos',
@@ -17,6 +19,8 @@ export class ServicosPage implements OnInit {
   // Campos para novo serviço
   novoServicoNome: string = '';
   novoServicoPreco: number | null = null;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.servicos = JSON.parse(localStorage.getItem('servicos') || '[]');
@@ -41,7 +45,9 @@ export class ServicosPage implements OnInit {
   salvar() {
     localStorage.setItem('servicos', JSON.stringify(this.servicos));
     alert('Serviços atualizados!');
+    this.router.navigate(['/cliente/home']);
   }
+
 
   salvarPromocao() {
     if (this.servicoSelecionadoIndex !== null) {

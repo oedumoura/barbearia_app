@@ -13,7 +13,9 @@
     <ion-datetime
       [(ngModel)]="selectedDate"
       presentation="date"
-    ></ion-datetime>
+      [min]="dataMinima"
+      [max]="dataMaxima">
+    </ion-datetime>
   </ion-item>
 
   <ion-item>

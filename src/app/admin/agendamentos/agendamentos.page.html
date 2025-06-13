@@ -8,27 +8,44 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- Filtros -->
   <ion-item>
-    <ion-label>Filtrar por Data</ion-label>
-    <ion-datetime [(ngModel)]="filtroData" presentation="date"></ion-datetime>
+    <ion-label position="stacked">Filtrar por Data</ion-label>
+    <ion-datetime
+      presentation="date"
+      [(ngModel)]="filtroData"
+      [value]="filtroData"
+      (ionChange)="aplicarFiltros()"
+      preferWheel="true"
+      display-format="YYYY-MM-DD"
+    ></ion-datetime>
+
   </ion-item>
+  <ion-button expand="block" (click)="aplicarFiltros()">Filtrar</ion-button>
 
   <ion-item>
-    <ion-label>Filtrar por Profissional</ion-label>
-    <ion-select [(ngModel)]="filtroProfissional" placeholder="Todos">
-      <ion-select-option *ngFor="let p of profissionais" [value]="p">{{ p }}</ion-select-option>
+    <ion-label position="stacked">Filtrar por Barbeiro</ion-label>
+    <ion-select [(ngModel)]="filtroBarbeiro" (ionChange)="aplicarFiltros()">
+      <ion-select-option *ngFor="let b of barbeiros" [value]="b">{{ b }}</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-list>
-    <ion-item *ngFor="let a of agendamentosFiltrados; let i = index">
-      <ion-label>
-        <p>{{ a.data }} {{ a.hora }} – {{ a.servico }} com {{ a.barbeiro }}</p>
-        <p>Cliente: {{ a.cliente }} | Valor: R$ {{ a.valor }}</p>
+  <ion-button expand="block" fill="outline" color="medium" (click)="limparFiltros()">Limpar Filtros</ion-button>
+
+  <!-- Lista de Agendamentos -->
+  <ion-list *ngIf="agendamentosFiltrados.length > 0; else nenhum">
+    <ion-item *ngFor="let ag of agendamentosFiltrados; let i = index">
+      <ion-label class="ion-text-wrap">
+        <h2>{{ ag.data }} às {{ ag.hora }}</h2>
+        <p>Cliente: <strong>{{ ag.cliente }}</strong></p>
+        <p>Serviço: {{ ag.servico }} - {{ ag.valor }}R$</p>
+        <p>Barbeiro: {{ ag.barbeiro }}</p>
       </ion-label>
-      <ion-button color="danger" fill="clear" (click)="excluir(i)">
-        Excluir
-      </ion-button>
+      <ion-button fill="clear" color="danger" (click)="excluir(i)">Excluir</ion-button>
     </ion-item>
   </ion-list>
+
+  <ng-template #nenhum>
+    <ion-text color="medium">Nenhum agendamento encontrado.</ion-text>
+  </ng-template>
 </ion-content>

@@ -7,33 +7,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgendamentosPage implements OnInit {
   agendamentos: any[] = [];
+  agendamentosFiltrados: any[] = [];
+
   filtroData: string = '';
-  filtroProfissional: string = '';
-  profissionais: string[] = [];
+  filtroBarbeiro: string = '';
+  barbeiros: string[] = [];
 
   ngOnInit() {
-    this.atualizarDados();
+    this.carregarAgendamentos();
+    this.carregarBarbeiros();
   }
 
-  atualizarDados() {
+  carregarAgendamentos() {
     this.agendamentos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
-    this.profissionais = JSON.parse(localStorage.getItem('profissionais') || '[]');
+    this.aplicarFiltros();
   }
 
-  get agendamentosFiltrados() {
-    return this.agendamentos.filter((a: any) => {
-      const porData = this.filtroData ? a.data === this.filtroData : true;
-      const porBarbeiro = this.filtroProfissional ? a.barbeiro === this.filtroProfissional : true;
-      return porData && porBarbeiro;
+  carregarBarbeiros() {
+    this.barbeiros = JSON.parse(localStorage.getItem('profissionais') || '[]');
+  }
+  
+  aplicarFiltros() {
+    let dataFormatada = '';
+    if (this.filtroData) {
+      const data = new Date(this.filtroData);
+      dataFormatada = data.toISOString().split('T')[0]; // '2025-06-20'
+    }
+
+    this.agendamentosFiltrados = this.agendamentos.filter(ag => {
+      const mesmaData = this.filtroData ? ag.data === dataFormatada : true;
+      const mesmoBarbeiro = this.filtroBarbeiro ? ag.barbeiro === this.filtroBarbeiro : true;
+      return mesmaData && mesmoBarbeiro;
     });
   }
 
+
+  
+
+
+  limparFiltros() {
+    this.filtroData = '';
+    this.filtroBarbeiro = '';
+    this.aplicarFiltros();
+  }
+
   excluir(index: number) {
-    const confirmacao = confirm('Tem certeza que deseja excluir este agendamento?');
-    if (confirmacao) {
-      this.agendamentos.splice(index, 1);
+    const originalIndex = this.agendamentos.findIndex(a =>
+      a.data === this.agendamentosFiltrados[index].data &&
+      a.hora === this.agendamentosFiltrados[index].hora &&
+      a.barbeiro === this.agendamentosFiltrados[index].barbeiro
+    );
+
+    if (confirm('Tem certeza que deseja excluir este agendamento?')) {
+      this.agendamentos.splice(originalIndex, 1);
       localStorage.setItem('agendamentos', JSON.stringify(this.agendamentos));
-      this.atualizarDados();
+      this.aplicarFiltros();
     }
   }
 }
